@@ -7,8 +7,8 @@
     <ProjectGuid>{90FE4C4D-122A-406D-8A40-79C561FB8184}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcTemplate.Services.Data</RootNamespace>
-    <AssemblyName>MvcTemplate.Services.Data</AssemblyName>
+    <RootNamespace>InterviewSystem.Services.Data</RootNamespace>
+    <AssemblyName>InterviewSystem.Services.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

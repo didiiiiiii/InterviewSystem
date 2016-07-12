@@ -7,8 +7,8 @@
     <ProjectGuid>{DEAB17A2-58C1-448C-8A66-D49C3AF7FC6C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcTemplate.Services.Web</RootNamespace>
-    <AssemblyName>MvcTemplate.Services.Web</AssemblyName>
+    <RootNamespace>InterviewSystem.Services.Web</RootNamespace>
+    <AssemblyName>InterviewSystem.Services.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

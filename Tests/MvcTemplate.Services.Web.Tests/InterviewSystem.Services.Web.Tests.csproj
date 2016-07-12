@@ -7,8 +7,8 @@
     <ProjectGuid>{D0D962BD-363D-4A22-9DB1-53136CE8EBF4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcTemplate.Services.Web.Tests</RootNamespace>
-    <AssemblyName>MvcTemplate.Services.Web.Tests</AssemblyName>
+    <RootNamespace>InterviewSystem.Services.Web.Tests</RootNamespace>
+    <AssemblyName>InterviewSystem.Services.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
