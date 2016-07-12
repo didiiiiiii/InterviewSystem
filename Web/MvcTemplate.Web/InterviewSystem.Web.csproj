@@ -202,6 +202,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
@@ -219,10 +220,11 @@
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Home\CandidationViewModel.cs" />
-    <Compile Include="ViewModels\Home\QuestionLevelViewModel.cs" />
+    <Compile Include="ViewModels\Questionnaire\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Questions\QuestionLevelViewModel.cs" />
     <Compile Include="ViewModels\Home\AdministrationViewModel.cs" />
-    <Compile Include="ViewModels\Home\QuestionTypeViewModel.cs" />
-    <Compile Include="ViewModels\Home\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\Questions\QuestionTypeViewModel.cs" />
+    <Compile Include="ViewModels\Questions\QuestionViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\FactorViewModel.cs" />
@@ -233,6 +235,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Questions\QuestionsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -300,6 +303,8 @@
     <Content Include="Views\Questions\ById.cshtml" />
     <Content Include="Views\Home\Administration.cshtml" />
     <Content Include="Views\Home\Candidation.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Questionnaire\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,9 +18,20 @@
                 @Html.ActionLink("Interview System", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+               
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Administration Panel", "Administration", "Home", new { area = string.Empty }, null)</li>
+                    <li>
+                        @if (HttpContext.Current.User.IsInRole("HR"))
+                        {
+                            @Html.ActionLink("HR Panel", "HR", "Home", new { area = string.Empty }, null);
+                        }
+                        else if (HttpContext.Current.User.IsInRole("Senior Developer") || HttpContext.Current.User.IsInRole("Technical Lead"))
+                        {
+                            @Html.ActionLink("Administration Panel", "Administration", "Home", new { area = string.Empty }, null);
+                        }
+                    </li>
                 </ul>
+                
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Candidation Panel", "Candidation", "Home", new { area = string.Empty }, null)</li>
                 </ul>
