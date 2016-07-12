@@ -1,0 +1,36 @@
+﻿@model InterviewSystem.Web.ViewModels.Home.AdministrationViewModel
+@{
+    ViewBag.Title = "Administration Panel";
+}
+
+<h1>Въпроси</h1>
+<div class="row">
+    @foreach (var question in Model.Questions)
+    {
+        <div class="col-md-4">
+            <a href="@question.Url">
+                @Html.Raw(question.Content.Replace("\n", "<br />"))
+            </a>
+            <div>@question.QuestionType</div>
+            <div>@question.QuestionLevel</div>
+        </div>
+    }
+</div>
+<h1>Типове въпроси</h1>
+<div class="row">
+    @foreach (var type in Model.Types)
+    {
+        <div class="col-md-2">
+            @type.QuestionTypeName
+        </div>
+    }
+</div>
+<h1>Нива въпроси</h1>
+<div class="row">
+    @foreach (var level in Model.Levels)
+    {
+        <div class="col-md-2">
+            @level.QuestionLevelName
+        </div>
+    }
+</div>
