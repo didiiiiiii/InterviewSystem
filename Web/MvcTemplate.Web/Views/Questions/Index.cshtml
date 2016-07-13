@@ -1,0 +1,91 @@
+﻿@model InterviewSystem.Web.ViewModels.Questions.IndexViewModel
+@{
+    ViewBag.Title = "Manage questions";
+}
+
+<h1>@ViewBag.Title</h1>
+
+
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Question
+        </th>
+        <th>
+            Level
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Weight
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var question in Model.Questions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => question.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => question.QuestionLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => question.QuestionType)
+            </td>
+            <td>
+                @question.Weight.ToString()
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = question.Id }) |
+                @Html.ActionLink("Details", "ById", new { id = question.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = question.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@* <div>
+         <ul>
+             @foreach (var question in Model.Questions)
+             {
+                <li>
+
+                        <a href="@question.Url">
+                            @Html.Raw(question.Content.Replace("\n", "<br />"))
+                        </a>
+                    <br />(type: @question.QuestionType, level: @question.QuestionLevel)
+
+                </li>
+             }
+         </ul>
+    </div>
+
+    <h1>Типове въпроси</h1>
+        <div class="row">
+            @foreach (var type in Model.Types)
+            {
+                <div class="col-md-2">
+                    @type.QuestionTypeName
+                </div>
+            }
+    </div>
+    <h1>Нива въпроси</h1>
+    <div class="row">
+        @foreach (var level in Model.Levels)
+        {
+            <div class="col-md-2">
+                @level.QuestionLevelName
+            </div>
+        }
+    </div>*@
