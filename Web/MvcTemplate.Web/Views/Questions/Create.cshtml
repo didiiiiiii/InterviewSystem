@@ -13,38 +13,37 @@
         Question
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Content, "Question")
+        @Html.EditorFor(model => model.Content)
         @Html.ValidationMessageFor(model => model.Content)
     </div>
+    @*
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuestionLevelId, "Question Level")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("QuestionLevelId", String.Empty)
+            @Html.ValidationMessageFor(model => model.QuestionLevelId)
+        </div>
 
-    @*<div class="editor-label">
-        @Html.LabelFor(model => model.QuestionType, "Level")
-    </div>
-                <div class="editor-field">
-                    @Html.DropDownList("QuestionLevel", String.Empty)
-                    @Html.ValidationMessageFor(model => model.QuestionLevel)
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.QuestionType, "Type")
-                </div>
-                <div class="editor-field">
-                    @Html.DropDownList("QuestionType", String.Empty)
-                    @Html.ValidationMessageFor(model => model.QuestionType)
-                </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuestionType, "Type")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("QuestionType", String.Empty)
+            @Html.ValidationMessageFor(model => model.QuestionType)
+        </div>
     *@
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.Weight)
-                </div>
-                <div class="editor-field">
-                    @Html.EditorFor(model => model.Weight)
-                    @Html.ValidationMessageFor(model => model.Weight)
-                </div>
-    
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Weight)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Weight)
+        @Html.ValidationMessageFor(model => model.Weight)
+    </div>
+
+    <p>
+        <input type="submit" value="Create" />
+    </p>
 }
 
 <div>

@@ -25,6 +25,10 @@
             return question;
         }
 
+        public IQueryable<Question> GetAll()
+        {
+            return this.questions.All().OrderBy(x => x.Content);
+        }
         public IQueryable<Question> GetRandomQuestions(int count)
         {
             return this.questions.All().OrderBy(x => Guid.NewGuid()).Take(count);

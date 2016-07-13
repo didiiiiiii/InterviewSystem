@@ -14,6 +14,7 @@ namespace InterviewSystem.Data.Models
             this.Questions = new HashSet<Question>();
         }
 
+        public int QuestionTypeId { get; set; }
         public string QuestionTypeName { get; set; }
 
         public virtual ICollection<Question> Questions { get; set; }

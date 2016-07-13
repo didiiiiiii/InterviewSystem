@@ -9,28 +9,24 @@
     {
         public int Id { get; set; }
 
+        //validation
         public string Content { get; set; }
 
-        public string QuestionType { get; set; }
+        //validation
+        public int QuestionTypeId { get; set; }
 
-        public string QuestionLevel { get; set; }
+        public int QuestionLevelId { get; set; }
 
-        public string Url
-        {
-            get
-            {
-                IIdentifierProvider identifier = new IdentifierProvider();
-                //return $"/Question/{identifier.EncodeId(this.Id)}";
-                return $"/Question/{this.Id}";
-            }
-        }
-
-        public double Weight{ get; set; }
+        public double Weight { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Question, QuestionViewModel>()
-                .ForMember(x => x.QuestionType, opt => opt.MapFrom(x => x.Type.QuestionTypeName)).ForMember(x => x.QuestionLevel, opt => opt.MapFrom(x => x.Level.QuestionLevelName));
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.Id))
+                .ForMember(x => x.Content, opt => opt.MapFrom(x => x.Content))
+                .ForMember(x => x.Weight, opt => opt.MapFrom(x => x.Weight))
+                .ForMember(x => x.QuestionTypeId, opt => opt.MapFrom(x => x.TypeId))
+                .ForMember(x => x.QuestionLevelId, opt => opt.MapFrom(x => x.LevelId));                
         }
     }
 }

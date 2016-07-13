@@ -4,15 +4,12 @@ using System.Linq;
 using System.Web;
 using Kendo;
 using Kendo.Mvc;
+using AutoMapper;
 
 namespace InterviewSystem.Web.ViewModels.Questions
 {
     public class IndexViewModel
     {
         public IEnumerable<QuestionViewModel> Questions { get; set; }
-
-        public IEnumerable<QuestionTypeViewModel> Types { get; set; }
-
-        public IEnumerable<QuestionLevelViewModel> Levels { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace InterviewSystem.Data.Models
 {
     public class InterviewSystemEntites : DbContext
     {
-
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionType> QuestionTypes { get; set; }
         public DbSet<QuestionLevel> QuestionLevels { get; set; }
         public DbSet<Candidate> Candidates { get; set; }
+        public DbSet<Answer> Answers { get; set; }
     }
 }

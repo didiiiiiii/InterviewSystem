@@ -6,6 +6,8 @@
 
     public interface IQuestionsService
     {
+        IQueryable<Question> GetAll();
+
         IQueryable<Question> GetRandomQuestions(int count);
 
         Question GetById(int id);

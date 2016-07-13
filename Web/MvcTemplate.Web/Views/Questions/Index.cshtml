@@ -5,11 +5,6 @@
 
 <h1>@ViewBag.Title</h1>
 
-
-
-
-
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -37,10 +32,10 @@
                 @Html.DisplayFor(modelItem => question.Content)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => question.QuestionLevel)
+                @Html.DisplayFor(modelItem => question.QuestionLevelId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => question.QuestionType)
+                @Html.DisplayFor(modelItem => question.QuestionTypeId)
             </td>
             <td>
                 @question.Weight.ToString()

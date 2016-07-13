@@ -47,7 +47,7 @@
 
         private void MySeed(ApplicationDbContext context)
         {
-            const string InterviewSystemUserPassword = "Didi*123";
+            const string InterviewSystemUserPassword = "@Didi*123";
 
             if (!context.Roles.Any())
             {
@@ -81,6 +81,7 @@
                 // Create  "Administrator" user
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
+
                 var user = new ApplicationUser { UserName = "admin", Email = "admin@interviewsystem.com" };
                 userManager.Create(user, InterviewSystemUserPassword);
                 // Assign user to  "Administrator" role
@@ -101,6 +102,7 @@
                 // Create  "Support Person" user
                 user = new ApplicationUser { UserName = "support", Email = "support@interviewsystem.com" };
                 userManager.Create(user, InterviewSystemUserPassword);
+                
                 // Assign user to  "Senior Developer" role
                 userManager.AddToRole(user.Id, GlobalConstants.SupportPersonRoleName);
 
@@ -112,13 +114,13 @@
 
                 context.SaveChanges();
 
-                context.QuestionTypes.Add(new QuestionType { QuestionTypeName = "Single Choice" });
-                context.QuestionTypes.Add(new QuestionType { QuestionTypeName = "Multiple Choice" });
+                context.QuestionTypes.Add(new QuestionType { QuestionTypeName = GlobalConstants.QuestionTypeSingleChoice });
+                context.QuestionTypes.Add(new QuestionType { QuestionTypeName = GlobalConstants.QuestionTypeMultipleChoice });
                 context.SaveChanges();
 
-                context.QuestionLevels.Add(new QuestionLevel { QuestionLevelName = "Beginners" });
-                context.QuestionLevels.Add(new QuestionLevel { QuestionLevelName = "Intermediate" });
-                context.QuestionLevels.Add(new QuestionLevel { QuestionLevelName = "Advanced" });
+                context.QuestionLevels.Add(new QuestionLevel { QuestionLevelName = GlobalConstants.QuestionLevelBeginners });
+                context.QuestionLevels.Add(new QuestionLevel { QuestionLevelName = GlobalConstants.QuestionLevelIntermediate });
+                context.QuestionLevels.Add(new QuestionLevel { QuestionLevelName = GlobalConstants.QuestionLevelAdvanced });
                 context.SaveChanges();
 
 
@@ -127,24 +129,24 @@
                     {
                         Content = "What's new in MVC v.5.0 ? ",
                         Weight = 0.4,
-                        Level = context.QuestionLevels.Single(g => g.QuestionLevelName == "Beginner"),
-                        Type = context.QuestionTypes.Single(g => g.QuestionTypeName == "Multiple Choice"),
+                        Level = context.QuestionLevels.SingleOrDefault(g => g.QuestionLevelName == GlobalConstants.QuestionLevelAdvanced),
+                        Type = context.QuestionTypes.SingleOrDefault(g => g.QuestionTypeName == GlobalConstants.QuestionTypeMultipleChoice),
                     });
                 context.Questions.Add(
                     new Question
                     {
                         Content = "What is the purpose of Attributes in C# ?",
                         Weight = 0.3,
-                        Level = context.QuestionLevels.Single(g => g.QuestionLevelName == "Beginner"),
-                        Type = context.QuestionTypes.Single(g => g.QuestionTypeName == "Single Choice"),
+                        Level = context.QuestionLevels.SingleOrDefault(g => g.QuestionLevelName == GlobalConstants.QuestionLevelBeginners),
+                        Type = context.QuestionTypes.SingleOrDefault(g => g.QuestionTypeName == GlobalConstants.QuestionTypeSingleChoice),
                     });
                 context.Questions.Add(
                     new Question
                     {
                         Content = "What is the difference between authorization and authentication ?",
                         Weight = 0.4,
-                        Level = context.QuestionLevels.Single(g => g.QuestionLevelName == "Advanced"),
-                        Type = context.QuestionTypes.Single(g => g.QuestionTypeName == "Multiple Choice"),
+                        Level = context.QuestionLevels.SingleOrDefault(g => g.QuestionLevelName == GlobalConstants.QuestionLevelBeginners),
+                        Type = context.QuestionTypes.SingleOrDefault(g => g.QuestionTypeName == GlobalConstants.QuestionTypeMultipleChoice),
                     });
                 context.SaveChanges();
             }
