@@ -14,10 +14,10 @@
         [Test]
         public void TestRouteById()
         {
-            const string Url = "/Question/Mjc2NS4xMjMxMjMxMzEyMw==";
+            const string Url = "/Question/1";
             var routeCollection = new RouteCollection();
             RouteConfig.RegisterRoutes(routeCollection);
-            routeCollection.ShouldMap(Url).To<QuestionsController>(c => c.ById("Mjc2NS4xMjMxMjMxMzEyMw=="));
+            routeCollection.ShouldMap(Url).To<QuestionsController>(c => c.ById(1));
         }
     }
 }

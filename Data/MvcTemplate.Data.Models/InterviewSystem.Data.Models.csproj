@@ -59,7 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer.cs" />
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Candidate.cs" />
+    <Compile Include="InterviewSystemEntites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="QuestionLevel.cs" />

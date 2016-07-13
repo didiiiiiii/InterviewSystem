@@ -23,6 +23,10 @@
 
         public IDbSet<QuestionLevel> QuestionLevels { get; set; }
 
+        public IDbSet<Candidate> Candidates { get; set; }
+
+        public IDbSet<Answer> Answers { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

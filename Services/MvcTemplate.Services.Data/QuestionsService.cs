@@ -18,10 +18,10 @@
             this.identifierProvider = identifierProvider;
         }
 
-        public Question GetById(string id)
+        public Question GetById(int id)
         {
-            var intId = this.identifierProvider.DecodeId(id);
-            var question = this.questions.GetById(intId);
+            //var intId = this.identifierProvider.DecodeId(id);
+            var question = this.questions.GetById(id);
             return question;
         }
 

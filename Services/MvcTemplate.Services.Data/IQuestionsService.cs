@@ -8,6 +8,6 @@
     {
         IQueryable<Question> GetRandomQuestions(int count);
 
-        Question GetById(string id);
+        Question GetById(int id);
     }
 }

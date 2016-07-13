@@ -3,12 +3,14 @@
     ViewBag.Title = "Administration Panel";
 }
 
-@if (HttpContext.Current.User.IsInRole("Senior Developer"))
-{
-    <div class="row">@Html.ActionLink("Manage Questions", "Index", "Questions", new { area = string.Empty }, null)</div>
-}
+<ul>
+    @if (HttpContext.Current.User.IsInRole("Senior Developer") || HttpContext.Current.User.IsInRole("Technical Lead"))
+    {
+        <li>@Html.ActionLink("Manage Questions", "Index", "Questions", new { area = string.Empty }, null)</li>
+    }
 
-@if (HttpContext.Current.User.IsInRole("Technical Lead"))
-{
-    <div class="row">@Html.ActionLink("Generate a test", "Index", "Questionnaire", new { area = string.Empty }, null)</div>
-}
+    @if (HttpContext.Current.User.IsInRole("Technical Lead"))
+    {
+        <li>@Html.ActionLink("Generate a questionnaire", "Index", "Questionnaire", new { area = string.Empty }, null)</li>
+    }
+</ul>

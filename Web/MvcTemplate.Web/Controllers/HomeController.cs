@@ -44,5 +44,14 @@
            return this.View(viewModel);
         }
 
+        public ActionResult About()
+        {
+            var viewModel = new AboutViewModel
+            {
+            };
+
+            return this.View(viewModel);
+        }
+
     }
 }
