@@ -8,7 +8,8 @@
     using Data.Models;
     using System;
     using Data;
-
+    using System.Net;
+    using System.Linq;
     [Authorize]
     public class QuestionsController : BaseController
     {
@@ -27,11 +28,25 @@
             this.questionTypes = questionTypes;
             this.questionLevels = questionLevels;
         }
+        public void SetQuestionPropertiesInViewBag()
+        {
+            var questionLevels = this.Cache.Get(
+                            "levels",
+                             () => this.questionLevels.GetAll().To<QuestionLevelViewModel>().ToList(),
+                            30 * 60);
+            var questionTypes = this.Cache.Get(
+                    "types",
+                     () => this.questionTypes.GetAll().To<QuestionTypeViewModel>().ToList(),
+                    30 * 60);
+
+            ViewBag.QuestionLevels = new SelectList(questionLevels, "Id", "QuestionLevelName");
+            ViewBag.QuestionTypes = new SelectList(questionTypes, "Id", "QuestionTypeName");
+        }
 
         public ActionResult Index()
         {
             var questions = this.questionsService.GetAll().To<QuestionViewModel>();
-           
+
             var viewModel = new IndexViewModel
             {
                 Questions = questions
@@ -50,22 +65,9 @@
 
         public ActionResult Create()
         {
-            var questionLevels =
-                  this.Cache.Get(
-                      "levels",
-                      () => this.questionLevels.GetAll().To<QuestionLevelViewModel>(), //.ToList(),
-                      30 * 60);
-            var questionTypes =
-                this.Cache.Get(
-                    "types",
-                    () => this.questionTypes.GetAll().To<QuestionTypeViewModel>(), //.ToList(),
-                    30 * 60);
 
-            var viewModel = new QuestionViewModel
-            {
-            };
-
-            return this.View(viewModel);
+            SetQuestionPropertiesInViewBag();
+            return this.View();
         }
 
         [HttpPost]
@@ -77,19 +79,19 @@
                 {
                     Content = question.Content,
                     Weight = question.Weight,
-                    LevelId =  question.QuestionLevelId,
+                    LevelId = question.QuestionLevelId,
                     TypeId = question.QuestionTypeId
-                };              
+                };
 
-                db.Questions.Add(questionRequest);
-                db.SaveChanges();
+                this.questionsService.CreateQuestion(questionRequest);
 
-                //return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
-            //ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
-            //ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+            SetQuestionPropertiesInViewBag();
             return this.View(question);
+
+
         }
 
         public ActionResult Edit()
@@ -101,13 +103,35 @@
             return this.View(viewModel);
         }
 
-        public ActionResult Delete()
+        public ActionResult Delete(int? id)
         {
-            var viewModel = new QuestionViewModel
+            if (id == null)
             {
-            };
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            return this.View(viewModel);
+            Question question = this.questionsService.GetById(id.Value);
+            QuestionViewModel questionRequest = new QuestionViewModel
+            {
+                Content = question.Content,
+                Weight = question.Weight,
+                QuestionLevelId = question.LevelId,
+                QuestionTypeId = question.TypeId
+            };
+            if (question == null)
+            {
+                ViewBag.Title = "Not found question!";
+            }
+            return View(questionRequest);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            this.questionsService.RemoveQuestion(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

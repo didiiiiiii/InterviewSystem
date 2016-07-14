@@ -4,7 +4,8 @@
     using InterviewSystem.Data.Models;
     using InterviewSystem.Services.Web;
     using InterviewSystem.Web.Infrastructure.Mapping;
-
+    using System.Collections.Generic;
+    using System.Web.Mvc;
     public class QuestionViewModel : IMapFrom<Question>, IHaveCustomMappings
     {
         public int Id { get; set; }

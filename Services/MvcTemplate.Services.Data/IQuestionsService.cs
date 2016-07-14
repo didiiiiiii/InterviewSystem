@@ -11,5 +11,9 @@
         IQueryable<Question> GetRandomQuestions(int count);
 
         Question GetById(int id);
+
+        bool CreateQuestion(Question question);
+
+        bool RemoveQuestion(int id);
     }
 }

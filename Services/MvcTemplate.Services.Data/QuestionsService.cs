@@ -33,5 +33,33 @@
         {
             return this.questions.All().OrderBy(x => Guid.NewGuid()).Take(count);
         }
+
+        public bool CreateQuestion(Question question)
+        {
+            if (question != null)
+            {
+                this.questions.Add(question);
+                this.questions.Save();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool RemoveQuestion(int id)
+        {
+            var question = this.questions.GetById(id);
+
+            if (question != null)
+            {
+                this.questions.Delete(question);
+
+                this.questions.Save();
+                return true;
+            }
+
+            return false;
+        }      
     }
 }

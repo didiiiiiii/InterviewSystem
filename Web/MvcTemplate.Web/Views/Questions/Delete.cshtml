@@ -4,4 +4,18 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<h3>Are you sure you want to delete this question?</h3>
 
+@Html.DisplayTextFor(model => model.Content)
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
