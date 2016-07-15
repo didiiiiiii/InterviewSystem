@@ -16,22 +16,22 @@
         @Html.EditorFor(model => model.Content)
         @Html.ValidationMessageFor(model => model.Content)
     </div>
-    
-        <div class="editor-label">
-            @Html.LabelFor(model => model.QuestionLevelId, "Question Level")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(m => m.QuestionLevelId, ViewBag.QuestionLevels as SelectList)
-            @Html.ValidationMessageFor(model => model.QuestionLevelId)
-        </div>
-    
-        <div class="editor-label">
-            @Html.LabelFor(model => model.QuestionTypeId, "Question Type")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(m => m.QuestionTypeId, ViewBag.QuestionTypes as SelectList)
-            @Html.ValidationMessageFor(model => model.QuestionTypeId)
-        </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.QuestionLevelId, "Question Level")
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(m => m.QuestionLevelId, ViewBag.QuestionLevels as SelectList)
+        @Html.ValidationMessageFor(model => model.QuestionLevelId)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.QuestionTypeId, "Question Type")
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(m => m.QuestionTypeId, ViewBag.QuestionTypes as SelectList)
+        @Html.ValidationMessageFor(model => model.QuestionTypeId)
+    </div>
     <div class="editor-label">
         @Html.LabelFor(model => model.Weight)
     </div>
@@ -40,10 +40,9 @@
         @Html.ValidationMessageFor(model => model.Weight)
     </div>
 
-    
-    <p>
-        <input type="submit" value="Create" />
-    </p>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
 }
 
 <div>

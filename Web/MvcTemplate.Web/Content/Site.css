@@ -66,3 +66,8 @@ tr:hover
     background: #5e5b54;
     color: #fff;
     font-weight: bold;
+}
+
+.editor-field span.field-validation-error {
+    color:red;
+}

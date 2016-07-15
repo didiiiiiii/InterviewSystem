@@ -5,19 +5,21 @@
     using InterviewSystem.Services.Web;
     using InterviewSystem.Web.Infrastructure.Mapping;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     public class QuestionViewModel : IMapFrom<Question>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
-        //validation
+        [Required]
+        [StringLength(30)]
         public string Content { get; set; }
 
-        //validation
         public int QuestionTypeId { get; set; }
 
         public int QuestionLevelId { get; set; }
 
+        [Range(0, 1)]
         public double Weight { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)

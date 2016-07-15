@@ -5,12 +5,16 @@
     using InterviewSystem.Services.Data;
     using InterviewSystem.Web.Infrastructure.Mapping;
     using InterviewSystem.Web.ViewModels.Questions;
+    using InterviewSystem.Web.Filters;
     using Data.Models;
     using System;
     using Data;
     using System.Net;
     using System.Linq;
+
+
     [Authorize]
+    [LogFilter]
     public class QuestionsController : BaseController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -28,6 +32,7 @@
             this.questionTypes = questionTypes;
             this.questionLevels = questionLevels;
         }
+
         public void SetQuestionPropertiesInViewBag()
         {
             var questionLevels = this.Cache.Get(
