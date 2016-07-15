@@ -13,7 +13,7 @@
     using System.Linq;
 
 
-    [Authorize]
+    // [Authorize]
     [LogFilter]
     public class QuestionsController : BaseController
     {
@@ -70,41 +70,91 @@
 
         public ActionResult Create()
         {
-
+            ViewBag.ButtonText = "Create";
             SetQuestionPropertiesInViewBag();
             return this.View();
         }
 
         [HttpPost]
-        public ActionResult Create(QuestionViewModel question)
+        public ActionResult Create([Bind(Exclude = "Id")] QuestionViewModel question)
         {
+            ViewBag.ButtonText = "Create";
+
             if (this.ModelState.IsValid)
             {
-                var questionRequest = new Question
+                try
                 {
-                    Content = question.Content,
-                    Weight = question.Weight,
-                    LevelId = question.QuestionLevelId,
-                    TypeId = question.QuestionTypeId
-                };
+                    var questionRequest = new Question
+                    {
+                        Content = question.Content,
+                        Weight = question.Weight,
+                        LevelId = question.QuestionLevelId,
+                        TypeId = question.QuestionTypeId
+                    };
 
-                this.questionsService.CreateQuestion(questionRequest);
+                    this.questionsService.CreateQuestion(questionRequest);
+                    TempData["UserMessage"] = "The item has been successfully created. ";
+                    TempData["UserMessageStatus"] = "ok";
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    TempData["UserMessage"] = "The item cannot be created. ";
+                    TempData["UserMessageStatus"] = "ko";
+                }
             }
 
             SetQuestionPropertiesInViewBag();
+            TempData["UserMessage"] = "The item cannot be created. ";
+            TempData["UserMessageStatus"] = "ko";
             return this.View(question);
-
-
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            var viewModel = new QuestionViewModel
-            {
-            };
+            ViewBag.ButtonText = "Edit";
+            SetQuestionPropertiesInViewBag();
 
+            var question = this.questionsService.GetById(id);
+            var viewModel = this.Mapper.Map<QuestionViewModel>(question);
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [LogFilter]
+        public ActionResult Edit(QuestionViewModel questionViewModel)
+        {
+            if (this.ModelState.IsValid)
+            {
+                try
+                {
+                    var questionRequest = new Question
+                    {
+                        Id = questionViewModel.Id,
+                        Content = questionViewModel.Content,
+                        Weight = questionViewModel.Weight,
+                        LevelId = questionViewModel.QuestionLevelId,
+                        TypeId = questionViewModel.QuestionTypeId
+                    };
+
+                    this.questionsService.EditQuestion(questionRequest);
+                    TempData["UserMessage"] = "The item has been successfully updated. ";
+                    TempData["UserMessageStatus"] = "ok";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    TempData["UserMessage"] = "The item cannot be updated. ";
+                    TempData["UserMessageStatus"] = "ko";
+                }
+
+            }
+
+            ViewBag.ButtonText = "Edit";
+            SetQuestionPropertiesInViewBag();
+
+            var viewModel = this.Mapper.Map<QuestionViewModel>(questionViewModel);
             return this.View(viewModel);
         }
 
@@ -112,10 +162,16 @@
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
 
             Question question = this.questionsService.GetById(id.Value);
+
+            if (question == null)
+            {
+                return View("Error");
+            }
+
             QuestionViewModel questionRequest = new QuestionViewModel
             {
                 Content = question.Content,
@@ -123,10 +179,7 @@
                 QuestionLevelId = question.LevelId,
                 QuestionTypeId = question.TypeId
             };
-            if (question == null)
-            {
-                ViewBag.Title = "Not found question!";
-            }
+
             return View(questionRequest);
         }
 
@@ -134,9 +187,17 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            this.questionsService.RemoveQuestion(id);
+            if (this.questionsService.RemoveQuestion(id))
+            {
+                TempData["UserMessage"] = "The item has been successfully deleted. ";
+                TempData["UserMessageStatus"] = "ok";
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            TempData["UserMessage"] = "The item cannot be deleted. ";
+            TempData["UserMessageStatus"] = "ko";
+            return this.View();
         }
     }
 }

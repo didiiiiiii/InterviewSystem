@@ -71,3 +71,13 @@ tr:hover
 .editor-field span.field-validation-error {
     color:red;
 }
+
+.user-message-status-ok 
+{
+    background-color:palegreen;
+}
+
+.user-message-status-ko
+{
+    background-color:red
+}

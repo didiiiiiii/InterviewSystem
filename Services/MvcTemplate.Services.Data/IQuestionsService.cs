@@ -14,6 +14,8 @@
 
         bool CreateQuestion(Question question);
 
+        bool EditQuestion(Question question);
+
         bool RemoveQuestion(int id);
     }
 }

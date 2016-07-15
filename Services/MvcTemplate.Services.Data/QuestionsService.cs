@@ -47,6 +47,29 @@
             return false;
         }
 
+        public bool EditQuestion(Question question)
+        {
+            if (question != null)
+            {
+                var q = questions.GetById(question.Id);
+                if (q != null)
+                {
+                    q.Content = question.Content;
+                    q.Weight = question.Weight;
+                    q.LevelId = question.LevelId;
+                    q.TypeId = question.TypeId;
+                }
+
+                //this.questions.GetById(question.Id) = q;
+
+                this.questions.Save();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool RemoveQuestion(int id)
         {
             var question = this.questions.GetById(id);
